@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Development of the CA2" />
+        <meta name="author" content="Caio Konart - CCT" />
+        <title>WebDev CA2</title>
+        
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/demo.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/codemirror.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/codemirror.js"></script>
+        <script>
+            function reply_click(clicked_object)
+                {
+                    var sql = clicked_object.getAttribute('data-sql');
+                    console.log(sql);
+                    editor.setValue(sql);
+                }
+        </script>
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">SQL Query</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" href="part1.html">Part 1</a></li>
+                        <li class="nav-item"><a class="nav-link" href="part2.html">Part 2</a></li>
+                        <li class="nav-item"><a class="nav-link" href="part3.html">Part 3</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page content-->
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1>CA2 : DATA MANIPOULATION & VALIDATION</h1>
+                <p class="lead">This is the part 2</p>
+            </div>
+            <div class="col-lg-2 order-1 mb-3 d-flex flex-column gap-2 mx-auto align-items-stretch">
+                <button name="2.1" class="btn btn-secondary btn-block" data-sql="SELECT count(hire_date) from employees WHERE hire_date = '1991-05-01'  LIMIT 10" onClick="reply_click(this)">Part 2.1</button>
+                <button name="2.2" class="btn btn-secondary btn-block" data-sql="SELECT emp_id, count(emp_id) FROM titles GROUP BY emp_id HAVING count(emp_id) > 2 LIMIT 10;" onClick="reply_click(this)">Part 2.2</button>
+                <button name="2.3" class="btn btn-secondary btn-block" data-sql="SELECT * from employees WHERE gender = 'F LIMIT 10" onClick="reply_click(this)">Part 2.3</button>
+                <button name="2.4" class="btn btn-secondary btn-block" data-sql="SELECT * from employees WHERE hire_date < '1986-01-01' and last_name = 'Simmel'  LIMIT 10" onClick="reply_click(this)">Part 2.4</button>
+                <button name="2.5" class="btn btn-secondary btn-block" data-sql="SELECT COUNT(*) AS 'TOTAL WITH B' FROM employees WHERE last_name LIKE "B%" LIMIT 10" onClick="reply_click(this)">Part 2.5</button>
+                <button name="2.6" class="btn btn-secondary btn-block" data-sql="CREATE TABLE emp_training (trainer_no INTEGER PRIMARY KEY AUTOINCREMENT, first_name VARCHAR(30) NOT NULL, last_name VARCHAR(30) NOT NULL, t_module VARCHAR(20) NULL)" onClick="reply_click(this)">Part 2.6</button>
+                <button name="2.7" class="btn btn-secondary btn-block" data-sql="INSERT INTO emp_training (first_name,last_name,t_module) VALUES ('Joe', 'Bloggs', 'Google Docs'); INSERT INTO emp_training (first_name,last_name,t_module) VALUES ('Fred', 'Bloggs', 'Google Sheets')" onClick="reply_click(this)"5>Part 2.7</button>
+                <button name="2.8" class="btn btn-secondary btn-block" data-sql="DROP TABLE emp_training" onClick="reply_click(this)">Part 2.8</button>
+                <button name="2.9" class="btn btn-secondary btn-block" data-sql="ALTER TABLE employees ADD email_address VARCHAR(20) LIMIT 10" onClick="reply_click(this)">Part 2.9</button>
+                <button name="2.10" class="btn btn-secondary btn-block" data-sql="UPDATE employees SET email_address = "gfacello@gmail.com" WHERE emp_id = 10001  LIMIT 10" onClick="reply_click(this)">Part 2.10</button>
+                
+            </div>
+            <div class="col-lg-10 order-2">
+                <textarea id="commands" class="col-lg-8 order-2 mb-5">
+                </textarea>
+                <div class="d-grid gap-2 mt-2">
+                <button class="btn btn-primary" type="button" id="execute">Execute</button>
+                    <input type="file" class="form-control" id="dbfile" />
+                    <!-- <input type='file' id='dbfile'/> -->
+                </div>
+                    <div id="error" class="error"></div>
+                
+                    <pre id="output">Results will be displayed here</pre>
+               </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/mode/sql/sql.min.js"></script>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script type="text/javascript" src="js/gui.js"></script>
+        
+    </body>
+</html>
